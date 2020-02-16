@@ -1,0 +1,61 @@
+.task-details-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 500px;
+    height: 100vh;
+    background-color: #ffffff;
+    border-left: 1px solid #E5E6ED;
+    z-index: 10;
+    padding: 35px;
+
+}
+
+.task-details-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-details-wrapper h1 {
+    font-size: 20px;
+    color: var(--darkgrey);
+    margin-top: 2px;
+}
+
+.btn-wrapper {
+    display: flex;
+}
+
+.icon-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+    margin-left: 10px;
+    background-color: #F5F5FA;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#delete-btn {
+    background-color: #F4E6E9;
+}
+
+.icon-btn img {
+    width: 14px;
+}
+
+.task-title {
+    margin-top: 2px;
+    border: none;
+    font-size: 20px;
+    font-family: 'Muli', sans-serif;
+    font-weight: 700;
+    color: var(--darkgrey);
+    width: 120%;
+    height: auto;
+    resize: none;
+}

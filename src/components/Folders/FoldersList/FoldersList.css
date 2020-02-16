@@ -1,0 +1,6 @@
+.folder-list-item-wrapper {
+    padding: 30px 61px 61px 61px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}

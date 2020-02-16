@@ -1,0 +1,28 @@
+.add-folder-wrapper {
+    padding: 61px 61px 35px 61px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-folder-header {
+    color: var(--darkgrey);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.create-folder-btn {
+    padding: 8px 10px;
+    background-color: var(--primary);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 2px;
+    border: none;
+    font-family: 'Muli', sans-serif;
+    cursor: pointer;
+}
+
+.separator {
+    border-bottom: 1px solid #d2d3d9;
+    margin: 0 61px;
+}

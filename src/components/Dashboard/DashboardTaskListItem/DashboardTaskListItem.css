@@ -1,0 +1,102 @@
+.task-list-wrapper {
+    padding: 62px 62px 0 62px;
+    width: 100%;
+}
+
+.task-list-item-wrapper {
+    position: relative;
+    margin: -10px 0;
+}
+
+.task-list-completed-wrapper {
+    padding: 62px;
+    width: 100%;
+}
+
+.task-list-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #E5E6ED;
+    height: 50px;
+    border-radius: 2px;
+    overflow: hidden;
+    padding: 0 20px 0 54px;
+}
+
+.task-list-item:hover {
+    cursor: pointer;
+}
+
+.task-list-item input {
+    margin: 0 15px;
+}
+
+.checkbox-wrapper {
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.checkbox-wrapper input {
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 41px;
+    z-index: 100;
+    left: 14px;
+    height: 24px;
+    width: 24px;
+    border: 1px solid var(--lightgrey);
+    border-radius: 2px;
+}
+
+.checkbox-wrapper:hover input ~ .checkmark {
+    background-color: var(--lightgrey);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+}
+
+.checkbox-wrapper input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-wrapper .checkmark:after {
+    left: 8px;
+    top: 5px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.task-list-item p {
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+.text-fade-out {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    right: 0;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 10%, rgba(255, 255, 255, 0.3) 20%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.9) 40%, rgba(255, 255, 255, 1) 60%, rgba(255, 255, 255, 1) 100%);
+}
+

@@ -1,0 +1,28 @@
+.folder-wrapper {
+    flex-direction: column;
+    width: 22%;
+    max-width: 250px;
+    justify-content: space-between;
+    margin: 20px 14px;
+    cursor: pointer;
+    overflow-x: hidden;
+}
+
+.box-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 180px;
+    border: 1px solid #d2d3d9;
+    background-color: #ebecf2;
+    border-radius: 4px;
+}
+
+.box-wrapper img {
+    width: 60%;
+}
+
+.folder-name {
+    margin-top: 20px;
+    text-align: center;
+}

@@ -1,0 +1,21 @@
+.empty-dashboard-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 61px;
+    height: 400px;
+    border-radius: 10px;
+    border: 1px dashed var(--lightgrey);
+}
+
+.empty-dashboard-wrapper img {
+    width: 140px;
+    margin-bottom: 40px;
+}
+
+.empty-dashboard-header {
+    font-size: 20px;
+    color: var(--darkgrey);
+    margin-bottom: 6px;
+}
