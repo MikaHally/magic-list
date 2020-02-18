@@ -6,7 +6,7 @@
     height: 100vh;
     background-color: #ffffff;
     border-left: 1px solid #E5E6ED;
-    z-index: 10;
+    z-index: 1000;
     padding: 35px;
 
 }
@@ -58,4 +58,18 @@
     width: 120%;
     height: auto;
     resize: none;
+}
+
+.choose-date-wrapper {
+    margin: 20px 0 30px 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.choose-folder-wrapper {
+    margin: 30px 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }

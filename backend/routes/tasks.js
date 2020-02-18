@@ -9,11 +9,11 @@ router.route('/').get((req, res) => {
 
 router.route('/add').post((req, res) => {
     const tasktitle = req.body.tasktitle;
-    /*const taskcomplete = req.body.taskcomplete;*/
+    const taskcomplete = req.body.taskcomplete;
 
     const newTask = new Task({
         tasktitle,
-        /*taskcomplete*/
+        taskcomplete
     });
 
     newTask.save()
@@ -37,10 +37,34 @@ router.route('/update/:id').post((req, res) => {
     Task.findById(req.params.id)
         .then(task => {
             task.tasktitle = req.body.tasktitle;
-            /*task.taskcomplete = JSON.parse(req.body.taskcomplete);*/
+            task.taskcomplete = req.body.taskcomplete;
 
             task.save()
                 .then(() => res.json('Task updated!'))
+                .catch(err => res.status(400).json('Error' + err));
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/updateDate/:id').put((req, res) => {
+    Task.findById(req.params.id)
+        .then(task => {
+            task.date = Date.parse(req.body.date);
+
+            task.save()
+                .then(() => res.json('Date updated!'))
+                .catch(err => res.status(400).json('Error' + err));
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/updateFolder/:id').put((req, res) => {
+    Task.findById(req.params.id)
+        .then(task => {
+            task.folder = req.body.folder;
+
+            task.save()
+                .then(() => res.json('Folder updated!'))
                 .catch(err => res.status(400).json('Error' + err));
         })
         .catch(err => res.status(400).json('Error: ' + err));

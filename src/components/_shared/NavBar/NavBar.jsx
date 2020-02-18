@@ -39,18 +39,18 @@ class NavBar extends Component {
         return (
             <div className="navbar-wrapper">
                 <div className="navbar-logo-wrapper" onClick={this.onLinkClick}>
-                    <Link to="/dashboard">
+                    <Link to="/">
                         <img src={require('../../../assets/logo.svg')} alt="logo"/>
                     </Link>
-                    <Link to="/dashboard" className="navbar-logo">
+                    <Link to="/" className="navbar-logo">
                         <p>Magiclist</p>
                     </Link>
                 </div>
                 <div className="nav-link-wrapper" onClick={this.onLinkClick}>
-                    <Link to="/dashboard" className="navbar-link">
+                    <Link to="/" className="navbar-link">
                         <img src={require('../../../assets/dashboard-icon.svg')} alt="dashboard-icon"/>
                     </Link>
-                    <Link to="/dashboard" className="navbar-link">
+                    <Link to="/" className="navbar-link">
                         <p>Dashboard</p>
                     </Link>
                 </div>

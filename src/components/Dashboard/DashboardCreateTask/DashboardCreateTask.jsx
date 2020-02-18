@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import "./DashboardCreateTask.css";
+import axios from "axios";
 
 class DashboardCreateTask extends Component {
     state = {
@@ -12,6 +13,14 @@ class DashboardCreateTask extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
+
+        const task = {
+            tasktitle: this.state.taskDescription
+        };
+
+        axios.post('http://localhost:5000/tasks/add', task)
+            .then(res => console.log(res.data));
+
         this.props.addTask(this.state.taskDescription);
 
         this.setState({taskDescription: ""});

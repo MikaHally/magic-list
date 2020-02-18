@@ -5,7 +5,7 @@ import DashboardTaskListUncompleted from "../components/Dashboard/DashboardTaskL
 import DashboardTaskListCompleted from "../components/Dashboard/DashboardTaskList/DashboardTaskListCompleted";
 import DashboardTaskDetails from "../components/Dashboard/DashboardTaskDetails/DashboardTaskDetails";
 import DashboardEmpty from "../components/Dashboard/DashboardEmpty/DashboardEmpty";
-import uuid from "uuid";
+import axios from "axios";
 
 
 class Dashboard extends Component {
@@ -17,27 +17,15 @@ class Dashboard extends Component {
         showTaskDetails: false,
     };
 
-    markComplete = (id) => {
-        this.setState({
-            tasks: this.state.tasks.map(task => {
-                if (task.id === id) {
-                    task.completed = !task.completed;
-                }
-                return task;
+    componentDidMount() {
+        axios.get('http://localhost:5000/tasks/')
+            .then(response => {
+                this.setState({tasks: response.data})
             })
-        });
-    };
-
-    addTask = (taskDescription) => {
-        const newTask = {
-            id: uuid.v4(),
-            taskDescription,
-            completed: false
-        };
-        if (newTask.taskDescription !== "") {
-            this.setState({tasks: [newTask, ...this.state.tasks]});
-        }
-    };
+            .catch((error) => {
+                console.log(error);
+            })
+    }
 
     handleToggleTasksStyling = () => {
         if (this.state.toggleTasks) {
@@ -55,6 +43,27 @@ class Dashboard extends Component {
         }
     };
 
+    markComplete = (task) => {
+        axios.post('http://localhost:5000/tasks/update/' + task._id, {
+            taskcomplete: !task.taskcomplete,
+            tasktitle: task.tasktitle,
+        })
+            .then(response => {
+                this.setState({
+                    tasks: this.state.tasks.map(el => {
+                        if (el._id === task._id) {
+                            el.taskcomplete = !el.taskcomplete;
+                        }
+                        return el;
+                    })
+                });
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
     handleToggleTasks = () => {
         const toggleTasks = !this.state.toggleTasks;
         this.setState({
@@ -64,16 +73,32 @@ class Dashboard extends Component {
 
     showTaskDetails = (task) => {
         this.setState({showTaskDetails: true});
-        this.setState({clickedTask: task.taskDescription});
-        this.setState({clickedTaskId: task.id});
+        this.setState({clickedTask: task.tasktitle});
+        this.setState({clickedTaskId: task._id});
     };
 
     closeTaskDetails = () => {
         this.setState({showTaskDetails: false});
     };
 
-    deleteTask = () => {
-        this.setState({tasks: [...this.state.tasks.filter(task => task.id !== this.state.clickedTaskId)]});
+    addTask = (title) => {
+        const newTask = {
+            tasktitle: title,
+            taskcomplete: false,
+        };
+
+        this.setState({tasks: [newTask, ...this.state.tasks]});
+    };
+
+    deleteTask = (id) => {
+        console.log(id);
+        axios.delete('http://localhost:5000/tasks/' + id)
+            .then(res => console.log(res.data));
+
+        this.setState({
+            tasks: this.state.tasks.filter(el => el._id !== id)
+        });
+
         this.setState({showTaskDetails: false});
     };
 
@@ -81,28 +106,29 @@ class Dashboard extends Component {
     render() {
         return (
             <div className="dashboard-wrapper">
-                <DashboardCreateTask addTask={this.addTask}/>
+                <DashboardCreateTask addTask={this.addTask} />
                 <div className="task-list-wrapper">
                     <DashboardTaskListUncompleted
-                        todoTasks={this.state.tasks.filter(task => !task.completed)}
-                        markComplete={this.markComplete}
+                        todoTasks={this.state.tasks.filter(task => !task.taskcomplete)}
                         showTaskDetails={this.showTaskDetails}
-                        deleteTask={this.deleteTask}
+                        markComplete={this.markComplete}
+                        task={this.state.tasks}
                     />
                 </div>
                 {this.state.tasks.length !== 0 &&
                 <button className="toggle-task-list-btn" onClick={this.handleToggleTasks}>Completed tasks</button>}
                 <div style={this.handleToggleTasksStyling()}>
                     <DashboardTaskListCompleted
-                        completedTasks={this.state.tasks.filter(task => task.completed)}
-                        markComplete={this.markComplete}
+                        completedTasks={this.state.tasks.filter(task => task.taskcomplete)}
                         showTaskDetails={this.showTaskDetails}
-                        deleteTask={this.deleteTask}
+                        markComplete={this.markComplete}
+                        task={this.state.tasks}
                     />
                 </div>
                 {this.state.showTaskDetails &&
                 <DashboardTaskDetails clickedTask={this.state.clickedTask} closeTaskDetails={this.closeTaskDetails}
-                                      deleteTask={this.deleteTask}/>}
+                                      clickedTaskId={this.state.clickedTaskId} deleteTask={this.deleteTask}
+                                      tasks={this.state.tasks}/>}
                 {this.state.tasks.length === 0 && <DashboardEmpty/>}
             </div>
         );

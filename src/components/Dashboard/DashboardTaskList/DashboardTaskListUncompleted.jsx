@@ -5,7 +5,7 @@ class DashboardTaskListUncompleted extends Component {
 
     render() {
         return (
-            this.props.todoTasks.map(task => <DashboardTaskListItem key={task.id} task={task}
+            this.props.todoTasks.map(task => <DashboardTaskListItem key={task._id} task={task}
                                                                     markComplete={this.props.markComplete}
                                                                     showTaskDetails={this.props.showTaskDetails}/>)
         );

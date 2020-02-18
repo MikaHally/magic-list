@@ -4,7 +4,9 @@ const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
     tasktitle: {type: String, required: true},
-    /* taskcomplete: {type: Boolean, default: false},*/
+    taskcomplete: {type: Boolean, default: false},
+    date: { type: Date, required: false, default: null },
+    folder: {type: String, required: false, default: null}
 }, {
     timestamps: true,
 });

@@ -4,7 +4,7 @@ import "./DashboardTaskListItem.css";
 class DashboardTaskListItem extends Component {
 
     lineThrough = () => {
-        if (this.props.task.completed) {
+        if (this.props.task.taskcomplete) {
             return {
                 textDecoration: 'line-through',
                 color: 'var(--lightgrey)'
@@ -17,7 +17,7 @@ class DashboardTaskListItem extends Component {
     };
 
     showCheckMark = () => {
-        if (this.props.task.completed) {
+        if (this.props.task.taskcomplete) {
             return {
                 backgroundColor: 'var(--primary)',
                 border: '1px solid var(--primary)'
@@ -26,20 +26,20 @@ class DashboardTaskListItem extends Component {
     };
 
     render() {
-        const {id, taskDescription} = this.props.task;
+        const {tasktitle} = this.props.task;
         return (
             <React.Fragment>
                 <div className="task-list-item-wrapper">
                     <label className="checkbox-wrapper">
                         <input type="checkbox" name="completed"
-                               onChange={() => this.props.markComplete(id)}/>
-                        <span className="checkmark" style={this.showCheckMark()}></span>
+                               onChange={() => this.props.markComplete(this.props.task)}/>
+                        <span className="checkmark" style={this.showCheckMark()}/>
                     </label>
                     <div className="task-list-item" onClick={() => this.props.showTaskDetails(this.props.task)}>
                         <p style={this.lineThrough()}>
-                            {taskDescription}
+                            {tasktitle}
                         </p>
-                        <div className="text-fade-out"></div>
+                        <div className="text-fade-out"/>
                     </div>
                 </div>
             </React.Fragment>

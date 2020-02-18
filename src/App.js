@@ -12,7 +12,7 @@ function App() {
         <div className="app-wrapper">
           <NavBar/>
           <Switch>
-            <Route path="/dashboard" exact component={Dashboard}/>
+            <Route path="/" exact component={Dashboard}/>
             <Route path="/folder" component={Folders}/>
             <Route path="/analytics" component={Analytics}/>
           </Switch>

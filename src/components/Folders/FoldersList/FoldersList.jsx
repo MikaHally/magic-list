@@ -7,7 +7,7 @@ class FoldersList extends Component {
     render() {
         return (
             <div className="folder-list-item-wrapper">
-                {this.props.folder.map(folder => <FoldersListItem key={folder.id} folder={folder}/>)}
+                {this.props.folders.map(folders => <FoldersListItem key={folders.id} folders={folders}/>)}
             </div>
         );
     }

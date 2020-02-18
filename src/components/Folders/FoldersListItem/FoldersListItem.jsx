@@ -9,7 +9,7 @@ class FoldersListItem extends Component {
                 <div className="box-wrapper">
                     <img src={require('../../../assets/folder-illustration.svg')} alt="folder"/>
                 </div>
-                <p className="folder-name">{this.props.folder.name}</p>
+                <p className="folder-name">{this.props.folders.foldername}</p>
             </div>
         );
     }

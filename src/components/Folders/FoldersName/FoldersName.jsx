@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from "axios";
 import "./FoldersName.css";
 
 class FoldersName extends Component {
@@ -12,7 +13,17 @@ class FoldersName extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.createFolder(this.state.name);
+        this.props.createFolder();
+
+        const folder = {
+            foldername: this.state.name
+        };
+
+        console.log(folder);
+
+        axios.post('http://localhost:5000/folders/add', folder)
+            .then(res => console.log(res.data));
+
 
         this.setState({name: ""});
     };
